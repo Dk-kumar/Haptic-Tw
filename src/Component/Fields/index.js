@@ -4,14 +4,16 @@ const InputField = ({
   value,
   label,
   name,
+  className,
   length,
   type,
+  required,
   onChange,
 }) => {
   return (
-    <div className="field-wrapper flex flex-col gap-2">
+    <div className={className ? className : "field-wrapper flex flex-col gap-2" }>
       {label && (
-        <label className="after:content-['*']">
+        <label className={ required && "after:content-['*']"}>
           {label}
         </label>
       )}
@@ -22,7 +24,7 @@ const InputField = ({
         name={name}
         maxLength={length && length}
         onChange={onChange}
-        autocomplete={"off"} 
+        autoComplete={"off"} 
       />
     </div>
   );

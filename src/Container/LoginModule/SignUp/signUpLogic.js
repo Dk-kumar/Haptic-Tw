@@ -25,16 +25,22 @@ const SignUpFormLogical = () => {
     ConfirmPassword: "",
   };
 
+  let showHideIcons = {
+    passwordField: false,
+    confirmPasswordField: false,
+  };
+
   const [inputValue, setInputValue] = useState(initialState);
-  const [isShowIcon, setShowIcon] = useState(false) 
+  const [isShowIcon, setShowIcon] = useState(showHideIcons);
 
   const containerFunctions = {
     handleOnChange: (event) => handleOnChange(event),
+    handleIcons: (toggleType, fieldType) => handleIcons(toggleType, fieldType),
   };
 
   const containerStates = {
     inputValue: inputValue,
-    isShowIcon: isShowIcon
+    isShowIcon: isShowIcon,
   };
 
   const handleOnChange = (event) => {
@@ -42,6 +48,13 @@ const SignUpFormLogical = () => {
     setInputValue({
       ...inputValue,
       [name]: value,
+    });
+  };
+
+  const handleIcons = (toggleType, fieldType) => {
+    setShowIcon({
+      ...isShowIcon,
+      [toggleType]: !fieldType,
     });
   };
 
