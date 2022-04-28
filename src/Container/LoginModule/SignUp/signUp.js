@@ -56,10 +56,10 @@ const SignUpForm = (props) => {
 
   return (
     <form>
-      <div className="signup-wrapper">
+      <div className="signup-wrapper md:w-31 md:m-auto md:my-8 md:rounded-xl">
         {renderHeader()}
-        <div className="form-top flex flex-col gap-4">
-          <div className="hidden">
+        <div className="form-top flex flex-col gap-4 md:flex-row">
+          <div className="md:basis-1/2">
             <InputField
               type="text"
               value={Suffix}
@@ -67,6 +67,8 @@ const SignUpForm = (props) => {
               name={Values.Suffix}
               onChange={handleOnChange}
             />
+          </div>
+          <div className="md:basis-1/2">
             <InputField
               type="text"
               value={Title}
@@ -75,22 +77,28 @@ const SignUpForm = (props) => {
               onChange={handleOnChange}
             />
           </div>
-          <InputField
-            type="text"
-            value={Firstname}
-            label={Values.FirstName}
-            name={Values.FirstName}
-            required={true}
-            onChange={handleOnChange}
-          />
-          <InputField
-            type="text"
-            value={Lastname}
-            label={Values.LastName}
-            name={Values.LastName}
-            required={true}
-            onChange={handleOnChange}
-          />
+        </div>
+        <div className="flex flex-col gap-4 md:flex-row">
+          <div className="md:basis-1/2">
+            <InputField
+              type="text"
+              value={Firstname}
+              label={Values.FirstName}
+              name={Values.FirstName}
+              required={true}
+              onChange={handleOnChange}
+            />
+          </div>
+          <div className="md:basis-1/2">
+            <InputField
+              type="text"
+              value={Lastname}
+              label={Values.LastName}
+              name={Values.LastName}
+              required={true}
+              onChange={handleOnChange}
+            />
+          </div>
         </div>
         <div className="form-middle flex flex-col gap-2">
           <div className="email-wrapper">
@@ -124,8 +132,8 @@ const SignUpForm = (props) => {
             onChange={handleOnChange}
           />
         </div>
-        <div className="form-bottom flex flex-col gap-4 ">
-          <div className="countrycode-wrapper">
+        <div className="form-bottom flex flex-col md:flex-row gap-4">
+          <div className="countrycode-wrapper basis-38">
             <label className="after:content-['*']">Country Code</label>
             <div>
               <Box
@@ -152,7 +160,7 @@ const SignUpForm = (props) => {
               </Box>
             </div>
           </div>
-          <div className="phone-wrapper">
+          <div className="phone-wrapper basis-60">
             <div className="relative">
               <InputField
                 type="text"
@@ -175,8 +183,8 @@ const SignUpForm = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-4">
-          <div className="password-wrapper">
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="password-wrapper basis-1/2">
             <div className="relative">
               <InputField
                 type={passwordField ? "text" : "password"}
@@ -191,7 +199,7 @@ const SignUpForm = (props) => {
               </div>
             </div>
           </div>
-          <div className="confirm-password-wrapper">
+          <div className="confirm-password-wrapper basis-1/2">
             <div className="relative">
               <InputField
                 type={confirmPasswordField ? "text" : "password"}
@@ -208,11 +216,11 @@ const SignUpForm = (props) => {
           </div>
         </div>
         <div className="submit-btn my-4">
-          <button className="w-full py-3.5 rounded-md border-0 bg-primary text-white">
-            {Values.SignUp}
+          <button className="w-full md:w-fit md:py-4 md:px-5 py-3.5 rounded-md border-0 bg-primary text-white">
+            {"Create account"}
           </button>
         </div>
-        <div className="line-wrapper mt-4 flex justify-center items-center gap-2">
+        <div className="line-wrapper mt-4 flex justify-center items-center gap-2 md:hidden">
           <div className="lines"></div>
           <span>OR</span>
           <div className="lines"></div>
