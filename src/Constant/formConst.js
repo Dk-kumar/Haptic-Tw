@@ -21,4 +21,8 @@ export const Values = {
     "Click the checkbox to use phone us predefined sign in option",
   ForgotPassword: "Forgot password?",
   RememberMe: "Remember me",
+
+  //Input Names
+  ConfirmPassword_name: 'ConfirmPassword',
+  UserId_name: 'UserId'
 };

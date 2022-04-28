@@ -18,7 +18,7 @@ const InputField = ({
         </label>
       )}
       <input
-        className="h-8 px-2 rounded-md border border-solid border-slate-300 focus-within:border-teal-500"
+        className="h-9 px-2 rounded-md border border-solid border-slate-300 focus:border-teal-500"
         type={type}
         value={value}
         name={name}

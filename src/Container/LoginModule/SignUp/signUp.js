@@ -205,7 +205,7 @@ const SignUpForm = (props) => {
                 type={confirmPasswordField ? "text" : "password"}
                 value={ConfirmPassword}
                 label={Values.ConfirmPassword}
-                name={"ConfirmPassword"}
+                name={Values.ConfirmPassword_name}
                 required={true}
                 onChange={handleOnChange}
               />
@@ -216,7 +216,7 @@ const SignUpForm = (props) => {
           </div>
         </div>
         <div className="submit-btn my-4">
-          <button className="w-full md:w-fit md:py-4 md:px-5 py-3.5 rounded-md border-0 bg-primary text-white">
+          <button type="button" className="w-full md:w-fit md:py-4 md:px-5 py-3.5 rounded-md border-0 bg-primary text-white">
             {"Create account"}
           </button>
         </div>
