@@ -120,14 +120,17 @@ const SignInForm = (props) => {
                 required={true}
                 onChange={handleOnChange}
               />
-              <div className="absolute right-4 bottom-0">
+              <div className="absolute right-4 bottom-1">
                 {renderIcons(isShowIcon)}
               </div>
             </div>
           </div>
           {formBottom()}
           <div className="submit-btn my-4">
-            <button type="button" className="w-full py-3.5 rounded-md border-0 bg-primary text-white">
+            <button
+              type="button"
+              className="w-full py-3.5 rounded-md border-0 bg-primary text-white"
+            >
               {Values.SignIn}
             </button>
           </div>

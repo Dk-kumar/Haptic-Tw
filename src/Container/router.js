@@ -3,7 +3,6 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Redirect,
 } from "react-router-dom";
 import SignUpFormLogical from "./LoginModule/SignUp/signUpLogic";
 import SignInFormLogical from "./LoginModule/SignIn/SignInLogic";

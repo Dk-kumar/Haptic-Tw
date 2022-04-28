@@ -23,6 +23,18 @@ export const Values = {
   RememberMe: "Remember me",
 
   //Input Names
-  ConfirmPassword_name: 'ConfirmPassword',
-  UserId_name: 'UserId'
+  PhoneNumber_name: "PhoneNumber",
+  CountryCode_name: "CountryCode",
+  ConfirmPassword_name: "ConfirmPassword",
+  UserId_name: "UserId",
+
+  //Validation Errors
+  F_NameError: "Firstname is required",
+  L_NameError: "Lastname is required",
+  EmailError: "Email is required",
+  U_NameError: "Username is required",
+  C_CodeError: "Select country code",
+  P_NumberError: "Phone number is required",
+  PasswordError: "Password is required",
+  C_PasswordError: "Confirm Password is required",
 };
