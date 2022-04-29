@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SignUpForm from "./signUp";
+import { isEmailValid, isPhoneNumberValid } from "../../../Shared/Validation";
 
 const SignUpFormLogical = () => {
   const handelFields = () => {
@@ -25,19 +26,6 @@ const SignUpFormLogical = () => {
     ConfirmPassword: "",
   };
 
-  let initialErrorState = {
-    Firstname: false,
-    Lastname: false,
-    Email: false,
-    isEmailChecked: false,
-    Username: false,
-    CountryCode: false,
-    PhoneNumber: false,
-    isNumberChecked: false,
-    Password: false,
-    ConfirmPassword: false,
-  };
-
   let showHideIcons = {
     passwordField: false,
     confirmPasswordField: false,
@@ -45,18 +33,18 @@ const SignUpFormLogical = () => {
 
   const [inputValue, setInputValue] = useState(initialState);
   const [isShowIcon, setShowIcon] = useState(showHideIcons);
-  const [validation, setValidation] = useState(initialErrorState);
+  const [handleError, setError] = useState({});
 
   const containerFunctions = {
     handleOnChange: (event) => handleOnChange(event),
     handleIcons: (key, value) => handleIcons(key, value),
-    isFormValid: (key, value) => isFormValid(key, value),
+    isFormValid: (key, value, error) => isFormValid(key, value, error),
   };
 
   const containerStates = {
     inputValue: inputValue,
     isShowIcon: isShowIcon,
-    validation: validation,
+    handleError: handleError,
   };
 
   const handleOnChange = (event) => {
@@ -70,16 +58,24 @@ const SignUpFormLogical = () => {
     });
   };
 
-  const isFormValid = (key, value) => {
+  const isFormValid = (key, value, error) => {
     if (!value) {
-      setValidation({
-        ...validation,
-        [key]: true,
+      setError({
+        ...handleError,
+        [key]: error,
+      });
+    } else if (
+      (key === "Email" && !isEmailValid(value)) ||
+      (key === "PhoneNumber" && !isPhoneNumberValid(value))
+    ) {
+      setError({
+        ...handleError,
+        [key]: `Make sure your ${key.toLowerCase()} is valid`,
       });
     } else {
-      setValidation({
-        ...validation,
-        [key]: false,
+      setError({
+        ...handleError,
+        [key]: null,
       });
     }
   };

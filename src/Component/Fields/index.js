@@ -4,10 +4,11 @@ const InputField = ({
   value,
   label,
   name,
-  className,
-  length,
   type,
+  border,
+  className,
   required,
+  maxLength,
   onChange,
   onBlur,
 }) => {
@@ -19,12 +20,14 @@ const InputField = ({
         <label className={required && "after:content-['*']"}>{label}</label>
       )}
       <input
-        className="h-9 px-2 rounded-md border border-solid border-slate-300 focus:border-teal-500"
+        className={`h-9 px-2 rounded-md border border-solid ${
+          border ? "border-red-500" : "border-slate-300"
+        }`}
         type={type}
         value={value}
         name={name}
         autoComplete={"off"}
-        maxLength={length && length}
+        maxLength={maxLength && maxLength}
         onChange={onChange}
         onBlur={() => onBlur && onBlur()}
       />

@@ -32,6 +32,7 @@ export const Values = {
   F_NameError: "Firstname is required",
   L_NameError: "Lastname is required",
   EmailError: "Email is required",
+  IsEmailValid: "Make sure your email is valid",
   U_NameError: "Username is required",
   C_CodeError: "Select country code",
   P_NumberError: "Phone number is required",

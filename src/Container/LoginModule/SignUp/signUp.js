@@ -2,7 +2,13 @@ import { Link } from "react-router-dom";
 
 import InputField from "../../../Component/Fields";
 import { Values } from "../../../Constant/formConst";
-import { visibilityIcon, visibilityOffIcon } from "../../../Shared/Icons";
+import {
+  visibilityIcon,
+  visibilityOffIcon,
+  google,
+  faceBook,
+  gitHub,
+} from "../../../Shared/Icons";
 
 //Meterial UI components
 import Box from "@mui/material/Box";
@@ -12,7 +18,7 @@ import Select from "@mui/material/Select";
 import FormHelperText from "@mui/material/FormHelperText";
 
 const SignUpForm = (props) => {
-  const { inputValue, isShowIcon, validation } = props;
+  const { inputValue, isShowIcon, handleError } = props;
   const { handleIcons, handleOnChange, isFormValid } = props;
 
   const {
@@ -54,8 +60,22 @@ const SignUpForm = (props) => {
     );
   };
 
-  const renderError = (value, error) => {
-    return <span className="text-red-600">{value && error}</span>;
+  const renderError = (value) => {
+    return (
+      <div className="p-1">
+        <span className="text-red-600">{value}</span>
+      </div>
+    );
+  };
+
+  const rendetSocialSignin = () => {
+    return (
+      <div className="social-login md:hidden mt-5 flex justify-evenly">
+        <div className="icon">{google()}</div>
+        <div className="icon">{faceBook()}</div>
+        <div className="icon">{gitHub()}</div>
+      </div>
+    );
   };
 
   return (
@@ -90,10 +110,13 @@ const SignUpForm = (props) => {
               label={Values.FirstName}
               name={Values.FirstName}
               required={true}
+              border={handleError?.Firstname}
               onChange={handleOnChange}
-              onBlur={() => isFormValid(Values.FirstName, Firstname)}
+              onBlur={() =>
+                isFormValid(Values.FirstName, Firstname, Values.F_NameError)
+              }
             />
-            {renderError(validation.Firstname, Values.F_NameError)}
+            {renderError(handleError?.Firstname)}
           </div>
           <div className="md:basis-1/2">
             <InputField
@@ -102,10 +125,13 @@ const SignUpForm = (props) => {
               label={Values.LastName}
               name={Values.LastName}
               required={true}
+              border={handleError?.Lastname}
               onChange={handleOnChange}
-              onBlur={() => isFormValid(Values.LastName, Lastname)}
+              onBlur={() =>
+                isFormValid(Values.LastName, Lastname, Values.L_NameError)
+              }
             />
-            {renderError(validation.Lastname, Values.L_NameError)}
+            {renderError(handleError?.Lastname)}
           </div>
         </div>
         <div className="form-middle flex flex-col gap-2">
@@ -117,8 +143,11 @@ const SignUpForm = (props) => {
                 label={Values.Email}
                 name={Values.Email}
                 required={true}
+                border={handleError?.Email}
                 onChange={handleOnChange}
-                onBlur={() => isFormValid(Values.Email, Email)}
+                onBlur={() =>
+                  isFormValid(Values.Email, Email, Values.EmailError)
+                }
               />
               <div className="checkbox absolute right-4 bottom-0">
                 <InputField
@@ -128,7 +157,7 @@ const SignUpForm = (props) => {
                 />
               </div>
             </div>
-            {renderError(validation.Email, Values.EmailError)}
+            {renderError(handleError?.Email)}
             <div className="text-xs my-1.5 text-right">
               {Values.EmailDescription}
             </div>
@@ -140,10 +169,13 @@ const SignUpForm = (props) => {
               label={Values.UserName}
               name={Values.UserName}
               required={true}
+              border={handleError?.Username}
               onChange={handleOnChange}
-              onBlur={() => isFormValid(Values.UserName, Username)}
+              onBlur={() =>
+                isFormValid(Values.UserName, Username, Values.U_NameError)
+              }
             />
-            {renderError(validation.Username, Values.U_NameError)}
+            {renderError(handleError?.Username)}
           </div>
         </div>
         <div className="form-bottom flex flex-col md:flex-row gap-4">
@@ -158,24 +190,24 @@ const SignUpForm = (props) => {
                 }}
                 size="small"
               >
-                <FormControl
+                {/* <FormControl
                   fullWidth
                   error={validation.CountryCode && !CountryCode}
+                > */}
+                <Select
+                  value={CountryCode}
+                  name={Values.CountryCode_name}
+                  onChange={handleOnChange}
+                  className="w-full h-10"
                 >
-                  <Select
-                    value={CountryCode}
-                    name={Values.CountryCode_name}
-                    onChange={handleOnChange}
-                    className="w-full h-10"
-                  >
-                    <MenuItem value={+1}>+1(USA)</MenuItem>
-                    <MenuItem value={+1}>+1(Canada)</MenuItem>
-                    <MenuItem value={+52}>+52(Mexico)</MenuItem>
-                  </Select>
-                  {validation.CountryCode && !CountryCode && (
+                  <MenuItem value={+1}>+1(USA)</MenuItem>
+                  <MenuItem value={+1}>+1(Canada)</MenuItem>
+                  <MenuItem value={+52}>+52(Mexico)</MenuItem>
+                </Select>
+                {/* {validation.CountryCode && !CountryCode && (
                     <FormHelperText>{Values.C_CodeError}</FormHelperText>
                   )}
-                </FormControl>
+                </FormControl> */}
               </Box>
             </div>
           </div>
@@ -186,9 +218,17 @@ const SignUpForm = (props) => {
                 value={PhoneNumber}
                 label={Values.PhoneNumber}
                 name={Values.PhoneNumber_name}
+                maxength="10"
                 required={true}
+                border={handleError?.PhoneNumber}
                 onChange={handleOnChange}
-                onBlur={() => isFormValid(Values.PhoneNumber_name, PhoneNumber)}
+                onBlur={() =>
+                  isFormValid(
+                    Values.PhoneNumber_name,
+                    PhoneNumber,
+                    Values.P_NumberError
+                  )
+                }
               />
               <div className="checkbox absolute right-4 bottom-0">
                 <InputField
@@ -198,7 +238,7 @@ const SignUpForm = (props) => {
                 />
               </div>
             </div>
-            {renderError(validation.PhoneNumber, Values.P_NumberError)}
+            {renderError(handleError?.PhoneNumber)}
             <div className="text-xs my-1.5 text-right">
               {Values.PhoneDescription}
             </div>
@@ -213,14 +253,17 @@ const SignUpForm = (props) => {
                 label={Values.Password}
                 name={Values.Password}
                 required={true}
+                border={handleError?.Password}
                 onChange={handleOnChange}
-                onBlur={() => isFormValid(Values.Password, Password)}
+                onBlur={() =>
+                  isFormValid(Values.Password, Password, Values.PasswordError)
+                }
               />
               <div className="absolute right-4 bottom-1">
                 {renderIcons("passwordField", passwordField)}
               </div>
             </div>
-            {renderError(validation.Password, Values.PasswordError)}
+            {renderError(handleError?.Password)}
           </div>
           <div className="confirm-password-wrapper basis-1/2">
             <div className="relative">
@@ -230,16 +273,21 @@ const SignUpForm = (props) => {
                 label={Values.ConfirmPassword}
                 name={Values.ConfirmPassword_name}
                 required={true}
+                border={handleError?.ConfirmPassword}
                 onChange={handleOnChange}
                 onBlur={() =>
-                  isFormValid(Values.ConfirmPassword_name, ConfirmPassword)
+                  isFormValid(
+                    Values.ConfirmPassword_name,
+                    ConfirmPassword,
+                    Values.C_PasswordError
+                  )
                 }
               />
               <div className="absolute right-4 bottom-1">
                 {renderIcons("confirmPasswordField", confirmPasswordField)}
               </div>
             </div>
-            {renderError(validation.ConfirmPassword, Values.C_PasswordError)}
+            {renderError(handleError?.ConfirmPassword)}
           </div>
         </div>
         <div className="submit-btn my-4">
@@ -255,6 +303,7 @@ const SignUpForm = (props) => {
           <span>OR</span>
           <div className="lines"></div>
         </div>
+        {rendetSocialSignin()}
       </div>
     </form>
   );
