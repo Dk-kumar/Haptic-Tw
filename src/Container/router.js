@@ -1,7 +1,6 @@
 import React from "react";
 import {
   BrowserRouter,
-  Redirect,
   Routes,
   Route,
   Navigate,
@@ -19,8 +18,7 @@ const AppRouter = () => {
         <Route path="/signup" element={<SignUpFormLogical />} />
       </Routes>
       <Routes>
-        <Route path="/" element={<Navigate to="/signin" />}>
-        </Route>
+        <Route path="/" element={<Navigate to="/signin" />}></Route>
       </Routes>
     </BrowserRouter>
   );
