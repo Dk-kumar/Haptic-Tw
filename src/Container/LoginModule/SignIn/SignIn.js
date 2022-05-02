@@ -21,7 +21,7 @@ const SignInForm = (props) => {
         <h2 className="my-1 text-3xl">{Values.SignIn}</h2>
         <span className="form-link text-lg">
           {Values.SignUpLink}{" "}
-          <Link className="no-underline" to="/">
+          <Link className="no-underline" to="/signup">
             {Values.SignUp}
           </Link>
         </span>
