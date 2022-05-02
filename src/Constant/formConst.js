@@ -38,4 +38,5 @@ export const Values = {
   P_NumberError: "Phone number is required",
   PasswordError: "Password is required",
   C_PasswordError: "Confirm Password is required",
+  U_IdError: "User ID is required",
 };

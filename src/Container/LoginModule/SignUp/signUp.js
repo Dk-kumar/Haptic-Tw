@@ -15,11 +15,10 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import FormHelperText from "@mui/material/FormHelperText";
 
 const SignUpForm = (props) => {
-  const { inputValue, isShowIcon, handleError } = props;
-  const { handleIcons, handleOnChange, isFormValid } = props;
+  const { inputValue, isShowIcon, handleError, isSubmit } = props;
+  const { handleIcons, handleOnChange, isFormValid, onSubmit } = props;
 
   const {
     Suffix,
@@ -190,24 +189,30 @@ const SignUpForm = (props) => {
                 }}
                 size="small"
               >
-                {/* <FormControl
+                <FormControl
                   fullWidth
-                  error={validation.CountryCode && !CountryCode}
-                > */}
-                <Select
-                  value={CountryCode}
-                  name={Values.CountryCode_name}
-                  onChange={handleOnChange}
-                  className="w-full h-10"
+                  error={handleError?.CountryCode && CountryCode === ""}
+                  className="p-1"
                 >
-                  <MenuItem value={+1}>+1(USA)</MenuItem>
-                  <MenuItem value={+1}>+1(Canada)</MenuItem>
-                  <MenuItem value={+52}>+52(Mexico)</MenuItem>
-                </Select>
-                {/* {validation.CountryCode && !CountryCode && (
-                    <FormHelperText>{Values.C_CodeError}</FormHelperText>
-                  )}
-                </FormControl> */}
+                  <Select
+                    value={CountryCode}
+                    name={Values.CountryCode_name}
+                    onChange={handleOnChange}
+                    onBlur={() =>
+                      isFormValid(
+                        Values.CountryCode_name,
+                        CountryCode,
+                        Values.C_CodeError
+                      )
+                    }
+                    className="w-full h-10"
+                  >
+                    <MenuItem value={+1}>+1(USA)</MenuItem>
+                    <MenuItem value={+1}>+1(Canada)</MenuItem>
+                    <MenuItem value={+52}>+52(Mexico)</MenuItem>
+                  </Select>
+                  {renderError(handleError?.CountryCode)}
+                </FormControl>
               </Box>
             </div>
           </div>
@@ -218,7 +223,7 @@ const SignUpForm = (props) => {
                 value={PhoneNumber}
                 label={Values.PhoneNumber}
                 name={Values.PhoneNumber_name}
-                maxength="10"
+                maxLength="10"
                 required={true}
                 border={handleError?.PhoneNumber}
                 onChange={handleOnChange}
@@ -288,12 +293,17 @@ const SignUpForm = (props) => {
               </div>
             </div>
             {renderError(handleError?.ConfirmPassword)}
+            {renderError(handleError?.isPasswordMatch)}
           </div>
         </div>
         <div className="submit-btn my-4">
           <button
+            disabled={!isSubmit}
+            onClick={onSubmit}
             type="button"
-            className="w-full md:w-fit md:py-4 md:px-5 py-3.5 rounded-md border-0 bg-primary text-white"
+            className={`w-full md:w-fit md:py-4 md:px-5 py-3.5 rounded-md border-0 bg-primary text-white ${
+              isSubmit ? `opacity-100` : `opacity-25`
+            }`}
           >
             {"Create account"}
           </button>

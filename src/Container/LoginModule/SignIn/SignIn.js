@@ -10,8 +10,8 @@ import {
 } from "../../../Shared/Icons";
 
 const SignInForm = (props) => {
-  const { isShowIcon, userInputs } = props;
-  const { handleIcons, handleOnChange } = props;
+  const { isShowIcon, userInputs, handleError, isSubmit } = props;
+  const { handleIcons, handleOnChange, isFormValid } = props;
 
   let { isEmail, isPhone, isUserName, UserId, Password } = userInputs;
 
@@ -62,6 +62,14 @@ const SignInForm = (props) => {
     );
   };
 
+  const renderError = (value) => {
+    return (
+      <div className="p-1">
+        <span className="text-red-600">{value}</span>
+      </div>
+    );
+  };
+
   const renderIcons = (fieldType) => {
     return (
       <i onClick={() => handleIcons()}>
@@ -90,10 +98,9 @@ const SignInForm = (props) => {
           label={Values.RememberMe}
         />
         <p className="forgot-password">{Values.ForgotPassword}</p>
-      </div>
+      </div>  
     );
   };
-
   return (
     <form>
       <div className="signin-wrapper">
@@ -107,8 +114,13 @@ const SignInForm = (props) => {
               label={Values.UserId}
               name={Values.UserId_name}
               required={true}
+              border={handleError?.UserId}
               onChange={handleOnChange}
+              onBlur={() =>
+                isFormValid(Values.UserId_name, UserId, Values.U_IdError)
+              }
             />
+            {renderError(handleError?.UserId)}
           </div>
           <div className="password-wrapper">
             <div className="relative">
@@ -118,18 +130,24 @@ const SignInForm = (props) => {
                 label={Values.Password}
                 name={Values.Password}
                 required={true}
+                border={handleError?.Password}
                 onChange={handleOnChange}
+                onBlur={() =>
+                  isFormValid(Values.Password, Password, Values.PasswordError)
+                }
               />
               <div className="absolute right-4 bottom-1">
                 {renderIcons(isShowIcon)}
               </div>
             </div>
+            {renderError(handleError?.Password)}
           </div>
           {formBottom()}
           <div className="submit-btn my-4">
             <button
               type="button"
-              className="w-full py-3.5 rounded-md border-0 bg-primary text-white"
+              className={`w-full py-3.5 rounded-md border-0 bg-primary text-white ${isSubmit ? `opacity-100` : `opacity-25`} `}
+              disabled
             >
               {Values.SignIn}
             </button>
