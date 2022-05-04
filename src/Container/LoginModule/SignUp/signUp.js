@@ -79,7 +79,7 @@ const SignUpForm = (props) => {
 
   return (
     <form>
-      <div className="signup-wrapper md:w-31 md:m-auto md:my-8 md:rounded-xl">
+      <div className="signup-wrapper md:w-31 md:m-auto md:my-4 md:rounded-xl">
         {renderHeader()}
         <div className="form-top hidden md:flex flex-col gap-4 md:flex-row">
           <div className="md:basis-1/2">
