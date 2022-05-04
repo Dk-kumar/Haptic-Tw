@@ -63,11 +63,7 @@ const SignInForm = (props) => {
   };
 
   const renderError = (value) => {
-    return (
-      <div className="p-1">
-        <span className="text-red-600">{value}</span>
-      </div>
-    );
+    return <span className="p-1 text-red-600">{value}</span>;
   };
 
   const renderIcons = (fieldType) => {
@@ -98,7 +94,7 @@ const SignInForm = (props) => {
           label={Values.RememberMe}
         />
         <p className="forgot-password">{Values.ForgotPassword}</p>
-      </div>  
+      </div>
     );
   };
   return (
@@ -106,8 +102,9 @@ const SignInForm = (props) => {
       <div className="signin-wrapper">
         {renderHeader()}
         <div className="flex flex-col gap-4 justify-center">
-          {loginOptions()}
-          <div className="user-wrapper">
+          <div>{loginOptions()}</div>
+
+          <div>
             <InputField
               type="text"
               value={UserId}
@@ -141,13 +138,15 @@ const SignInForm = (props) => {
               </div>
             </div>
             {renderError(handleError?.Password)}
+            {formBottom()}
           </div>
-          {formBottom()}
           <div className="submit-btn my-4">
             <button
               type="button"
-              className={`w-full py-3.5 rounded-md border-0 bg-primary text-white ${isSubmit ? `opacity-100` : `opacity-25`} `}
-              disabled
+              className={`w-full py-3.5 rounded-md border-0 bg-primary text-white ${
+                isSubmit ? `opacity-100` : `opacity-25`
+              } `}
+              disabled={!isSubmit}
             >
               {Values.SignIn}
             </button>
