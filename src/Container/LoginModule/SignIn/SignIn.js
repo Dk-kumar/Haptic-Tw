@@ -143,7 +143,7 @@ const SignInForm = (props) => {
           <div className="submit-btn my-4">
             <button
               type="button"
-              className={`w-full py-3.5 rounded-md border-0 bg-primary text-white ${
+              className={`w-full py-3.5 rounded-lg border-0 bg-primary text-white ${
                 isSubmit ? `opacity-100` : `opacity-25`
               } `}
               disabled={!isSubmit}

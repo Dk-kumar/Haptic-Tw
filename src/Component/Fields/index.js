@@ -21,8 +21,10 @@ const InputField = ({
       )}
       <input
         className={`h-9 px-2 rounded-md border border-solid ${
-          border ? "border-red-500" : "border-slate-300"
-        }`}
+          !border
+            ? `focus:outline-none focus:ring-1 focus:border-primary`
+            : `focus:outline-none focus:ring-1 focus:border-red-500`
+        } ${border ? "border-red-500" : "border-slate-300"}`}
         type={type}
         value={value}
         name={name}

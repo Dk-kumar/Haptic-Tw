@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-
 import InputField from "../../../Component/Fields";
 import { Values } from "../../../Constant/formConst";
+import GoogleAccount from "../../../Component/GoogleAccount";
 import {
   visibilityIcon,
   visibilityOffIcon,
-  google,
   faceBook,
   gitHub,
 } from "../../../Shared/Icons";
@@ -69,8 +68,10 @@ const SignUpForm = (props) => {
 
   const rendetSocialSignin = () => {
     return (
-      <div className="social-login md:hidden mt-5 flex justify-evenly">
-        <div className="icon">{google()}</div>
+      <div className="social-login lg:hidden mt-5 flex justify-evenly">
+        <div className="icon">
+          <GoogleAccount />
+        </div>
         <div className="icon">{faceBook()}</div>
         <div className="icon">{gitHub()}</div>
       </div>
@@ -79,10 +80,10 @@ const SignUpForm = (props) => {
 
   return (
     <form>
-      <div className="signup-wrapper md:w-31 md:m-auto md:my-4 md:rounded-xl">
+      <div className="signup-wrapper lg:w-31 lg:m-auto lg:my-4 lg:rounded-xl">
         {renderHeader()}
-        <div className="form-top hidden md:flex flex-col gap-4 md:flex-row">
-          <div className="md:basis-1/2">
+        <div className="form-top hidden lg:flex flex-col gap-4 lg:flex-row">
+          <div className="lg:basis-1/2">
             <InputField
               type="text"
               value={Suffix}
@@ -91,7 +92,7 @@ const SignUpForm = (props) => {
               onChange={handleOnChange}
             />
           </div>
-          <div className="md:basis-1/2">
+          <div className="lg:basis-1/2">
             <InputField
               type="text"
               value={Title}
@@ -101,8 +102,8 @@ const SignUpForm = (props) => {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-4 md:flex-row">
-          <div className="md:basis-1/2">
+        <div className="flex flex-col gap-4 lg:flex-row">
+          <div className="lg:basis-1/2">
             <InputField
               type="text"
               value={Firstname}
@@ -117,7 +118,7 @@ const SignUpForm = (props) => {
             />
             {renderError(handleError?.Firstname)}
           </div>
-          <div className="md:basis-1/2">
+          <div className="lg:basis-1/2">
             <InputField
               type="text"
               value={Lastname}
@@ -177,7 +178,7 @@ const SignUpForm = (props) => {
             {renderError(handleError?.Username)}
           </div>
         </div>
-        <div className="form-bottom flex flex-col md:flex-row gap-4">
+        <div className="form-bottom flex flex-col lg:flex-row gap-4">
           <div className="countrycode-wrapper basis-38">
             <label className="after:content-['*']">Country Code</label>
             <div>
@@ -249,7 +250,7 @@ const SignUpForm = (props) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col lg:flex-row gap-4">
           <div className="password-wrapper basis-1/2">
             <div className="relative">
               <InputField
@@ -301,14 +302,14 @@ const SignUpForm = (props) => {
             disabled={!isSubmit}
             onClick={onSubmit}
             type="button"
-            className={`w-full md:w-fit md:py-4 md:px-5 py-3.5 rounded-md border-0 bg-primary text-white ${
+            className={`w-full lg:w-fit lg:py-4 lg:px-5 py-3.5 rounded-lg border-0 bg-primary text-white ${
               isSubmit ? `opacity-100` : `opacity-25`
             }`}
           >
             {"Create account"}
           </button>
         </div>
-        <div className="line-wrapper mt-4 flex justify-center items-center gap-2 md:hidden">
+        <div className="line-wrapper mt-4 flex justify-center items-center gap-2 lg:hidden">
           <div className="lines"></div>
           <span>OR</span>
           <div className="lines"></div>
