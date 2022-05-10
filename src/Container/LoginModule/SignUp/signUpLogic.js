@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SignUpForm from "./signUp";
+import { apiEndPoint } from "../../../Constant/apiEndPointConst";
+import { postOptions } from "../../../Shared/Http/apiHeader.config";
+import { request } from "../../../Shared/Http/request";
 import {
   isEmailValid,
   isPhoneNumberValid,
@@ -40,6 +44,8 @@ const SignUpFormLogical = () => {
   const [isSubmit, handleSubmit] = useState(false);
   const [handleError, setError] = useState({});
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     handleSubmit(!formButtonEnable(inputValue));
   }, [inputValue]);
@@ -58,6 +64,21 @@ const SignUpFormLogical = () => {
     isSubmit: isSubmit,
   };
 
+  const {
+    Suffix = null,
+    Title = null,
+    Firstname,
+    Lastname,
+    Email,
+    isEmailChecked,
+    Username,
+    CountryCode,
+    PhoneNumber,
+    isNumberChecked,
+    Password,
+    ConfirmPassword,
+  } = inputValue;
+
   const handleOnChange = (event) => {
     const { name, value } = event.target;
     if (name === "PhoneNumber") {
@@ -69,14 +90,37 @@ const SignUpFormLogical = () => {
     });
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    const obj = {
+      suffix: Suffix,
+      title: Title,
+      firstName: Firstname,
+      lastName: Lastname,
+      username: Username,
+      password: Password,
+      confirmPassword: ConfirmPassword,
+      emails: [{ emailAddress: Email, isLoginCriteria: isEmailChecked }],
+      phones: [
+        {
+          phoneNumber: PhoneNumber,
+          countryCode: CountryCode,
+          isLoginCriteria: isNumberChecked,
+        },
+      ],
+    };
+
     if (inputValue.Password !== inputValue.ConfirmPassword) {
       return setError({
         ...handleError,
         ["ConfirmPassword"]: `Password must match`,
       });
     }
-    console.log(inputValue);
+    const result = await request(apiEndPoint.signup, postOptions(obj));
+    navigate("/signin");
+    if (result) {
+      alert("success");
+    }
+    console.log(obj);
   };
 
   const isFormValid = (key, value, error) => {

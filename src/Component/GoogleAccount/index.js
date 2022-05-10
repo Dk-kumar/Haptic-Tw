@@ -1,14 +1,14 @@
 import { useGoogleLogin } from "react-google-login";
-import { TokenGenerator } from "../../Shared/Token";
 import { google } from "../../Shared/Icons";
 
-const GoogleAccount = () => {
+const GoogleAccount = (props) => {
   const clientId =
     "1029915896475-es4lmj1kqptslbqd16ti5s282ou2mj0p.apps.googleusercontent.com";
 
   const onSuccess = (res) => {
+    const { JWTTokan = "" } = props;
+    res.profileObj["Jwt"] = JWTTokan;
     console.log(res.profileObj);
-    TokenGenerator(res);
   };
 
   const onFailure = (res) => {

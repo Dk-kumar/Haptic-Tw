@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import { Values } from "../../../Constant/formConst";
 import InputField from "../../../Component/Fields";
+import GoogleAccount from "../../../Component/GoogleAccount";
 import {
   visibilityIcon,
   visibilityOffIcon,
-  google,
   faceBook,
   gitHub,
 } from "../../../Shared/Icons";
+
+const JWTTokan = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c`;
 
 const SignInForm = (props) => {
   const { isShowIcon, userInputs, handleError, isSubmit } = props;
@@ -77,7 +79,9 @@ const SignInForm = (props) => {
   const rendetSocialSignin = () => {
     return (
       <div className="social-login mt-5 flex justify-evenly">
-        <div className="icon">{google()}</div>
+        <div className="icon">
+          <GoogleAccount JWTTokan={JWTTokan} />
+        </div>
         <div className="icon">{faceBook()}</div>
         <div className="icon">{gitHub()}</div>
       </div>
