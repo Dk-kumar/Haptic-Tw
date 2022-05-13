@@ -13,7 +13,7 @@ const JWTTokan = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwI
 
 const SignInForm = (props) => {
   const { isShowIcon, userInputs, handleError, isSubmit } = props;
-  const { handleIcons, handleOnChange, isFormValid } = props;
+  const { handleIcons, handleOnChange, isFormValid, onSubmit } = props;
 
   let { isEmail, isPhone, isUserName, UserId, Password } = userInputs;
 
@@ -151,6 +151,7 @@ const SignInForm = (props) => {
                 isSubmit ? `opacity-100` : `opacity-25`
               } `}
               disabled={!isSubmit}
+              onClick={onSubmit}
             >
               {Values.SignIn}
             </button>

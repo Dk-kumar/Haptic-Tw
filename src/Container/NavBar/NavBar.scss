@@ -1,0 +1,15 @@
+.navbar-wrapper {
+  @apply flex-1 bg-navBg h-screen text-[#fff] rounded-r-2xl;
+  
+  .headding {
+    @apply text-center text-2xl font-normal pt-8 px-16 pb-16;
+  }
+
+  .nav-links {
+    @apply flex flex-col items-center gap-8 text-lg font-medium;
+  }
+
+  .active-link {
+    @apply bg-[#fff] text-[#000000] py-4 w-full text-center;
+  }
+}

@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       colors: {
         primary: "#6757f6",
+        navBg: "#325d7b"
       },
       width: {
         '31': '31%',
@@ -12,6 +13,10 @@ module.exports = {
         38: "38%",
         60: "60%",
       },
+      flex: {
+        '1': '1',
+        '6': '6'
+      }
     },
   },
   plugins: [],

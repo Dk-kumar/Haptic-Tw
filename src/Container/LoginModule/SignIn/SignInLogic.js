@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import SignInForm from "./SignIn";
 import { isEmailValid, formButtonEnable } from "../../../Shared/Validation";
 
@@ -16,6 +17,8 @@ const SignInFormLogical = () => {
   const [handleError, setError] = useState({});
   const [isSubmit, handleSubmit] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     handleSubmit(!formButtonEnable(userInputs));
   }, [userInputs]);
@@ -24,6 +27,7 @@ const SignInFormLogical = () => {
     handleOnChange: (event) => handleOnChange(event),
     handleIcons: (toggleType, fieldType) => handleIcons(toggleType, fieldType),
     isFormValid: (key, value, error) => isFormValid(key, value, error),
+    onSubmit: () => onSubmit(),
   };
 
   const containerStates = {
@@ -62,6 +66,10 @@ const SignInFormLogical = () => {
         [key]: null,
       });
     }
+  };
+
+  const onSubmit = () => {
+    navigate("/dashbord");
   };
 
   return <SignInForm {...containerFunctions} {...containerStates} />;
