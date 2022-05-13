@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SignInForm from "./SignIn";
+import { getBrowserData } from "../../../Utils/BrowserDB";
 import { isEmailValid, formButtonEnable } from "../../../Shared/Validation";
+
+export const SIGN_IN = "SIGN_IN";
 
 const SignInFormLogical = () => {
   let initialState = {
@@ -22,6 +25,15 @@ const SignInFormLogical = () => {
   useEffect(() => {
     handleSubmit(!formButtonEnable(userInputs));
   }, [userInputs]);
+
+  useEffect(() => {
+    if (getBrowserData(SIGN_IN)) {
+      return navigate("/dashbord");
+    }
+    else {
+      return navigate("/")
+    }
+  });
 
   const containerFunctions = {
     handleOnChange: (event) => handleOnChange(event),

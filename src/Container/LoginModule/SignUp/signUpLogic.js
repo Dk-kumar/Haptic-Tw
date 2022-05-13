@@ -9,6 +9,8 @@ import {
   isPhoneNumberValid,
   formButtonEnable,
 } from "../../../Shared/Validation";
+import { getBrowserData } from "../../../Utils/BrowserDB";
+import { SIGN_IN } from "../SignIn/SignInLogic";
 
 const SignUpFormLogical = () => {
   const handelFields = () => {
@@ -49,6 +51,14 @@ const SignUpFormLogical = () => {
   useEffect(() => {
     handleSubmit(!formButtonEnable(inputValue));
   }, [inputValue]);
+
+  useEffect(() => {
+    if (getBrowserData(SIGN_IN)) {
+      return navigate("/dashbord");
+    } else {
+      return navigate("/");
+    }
+  });
 
   const containerFunctions = {
     handleOnChange: (event) => handleOnChange(event),

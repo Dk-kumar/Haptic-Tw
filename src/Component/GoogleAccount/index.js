@@ -1,5 +1,7 @@
 import { useGoogleLogin } from "react-google-login";
 import { google } from "../../Shared/Icons";
+import { setBrowserData } from "../../Utils/BrowserDB";
+import { SIGN_IN } from "../../Container/LoginModule/SignIn/SignInLogic";
 
 const GoogleAccount = (props) => {
   const clientId =
@@ -8,6 +10,7 @@ const GoogleAccount = (props) => {
   const onSuccess = (res) => {
     const { JWTTokan = "" } = props;
     res.profileObj["Jwt"] = JWTTokan;
+    setBrowserData(SIGN_IN, JWTTokan);
     console.log(res.profileObj);
   };
 
