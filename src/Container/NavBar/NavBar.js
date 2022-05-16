@@ -7,7 +7,7 @@ const NavBar = (props) => {
   const handleNav = () => {
     return (
       <div className="navbar-wrapper">
-        <div className="headding">
+        <div className="heading">
           <p className="title">
             <span>P</span>ERFICIENT
           </p>

@@ -9,16 +9,16 @@ const NavBarLogic = () => {
     { id: 4, link: "Application D" },
   ];
 
-  const [activeIndex, setActive] = useState(0)
+  const [activeIndex, setActive] = useState(0);
 
   const containerStates = {
     navLinks: navLinks,
-    activeIndex: activeIndex
+    activeIndex: activeIndex,
   };
 
   const containerFunctions = {
-      setActive: setActive
-  }
+    setActive: setActive,
+  };
 
   return <NavBar {...containerStates} {...containerFunctions} />;
 };

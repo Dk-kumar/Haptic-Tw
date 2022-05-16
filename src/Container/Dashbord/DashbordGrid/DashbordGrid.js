@@ -1,8 +1,9 @@
 import "./DashbordGrid.scss";
+import { Link } from "react-router-dom";
 
 const DashbordGrid = (props) => {
   const { gridContant } = props;
-
+  
   const renderHeading = () => {
     return (
       <div className="heading">
@@ -25,7 +26,7 @@ const DashbordGrid = (props) => {
                 </div>
                 <div className="buttons">
                   <button className={item.success}>{item.success}</button>
-                  <button className={item.details}>{item.details}</button>
+                  <Link className={item.details} to="/dashbord/application_A" state={item}>{item.details}</Link>
                 </div>
               </div>
             );

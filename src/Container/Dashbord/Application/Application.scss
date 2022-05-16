@@ -1,0 +1,40 @@
+.ApplicationContainer {
+    @apply flex;
+
+    .DetailsContainer {
+        @apply flex-6 p-8 pb-0;
+
+        .backArrow {
+            @apply text-2xl absolute top-13 cursor-pointer;
+            flex: 0 0 calc(25% - 50px)
+        }
+
+        h2 {
+            @apply text-center;  
+        }
+
+        .tableData {
+            @apply w-44 h-96 rounded-xl rounded-tl-none border-4 border-navBg border-solid m-auto;
+
+            .DetailsTitle {
+                @apply text-lg text-center bg-navBg text-white p-2.5;
+            }
+
+            .datasContainer {
+                @apply flex justify-around;
+
+                .dataContainer {
+                    @apply text-center mt-8;
+
+                    .dataTitle {
+                       @apply mb-8 text-xl;
+                    }
+
+                    p {
+                        @apply mb-3 text-lg;
+                    }
+                }
+            }
+        }
+    }
+}
